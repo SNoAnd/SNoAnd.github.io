@@ -73,9 +73,29 @@ mechanisms to perform security monitoring, thanks to the
 <button type="button" class="collapsible">Read more about Tagged C</button>
 <div class="content">
 
-The Why:
+Tag-based reference monitoring is a model of dynamic security enforcement in which every
+piece of data in a system is paired with an associatted piece of metadata, called a tag.
+Tags carry information related to the role or history of data: concepts like
+"this string is from user input," "this pointer gives write access to object X,"
+"this value carries Bob's personal information." A monitor, implemented in software or hardware,
+can read the tags on data involved in the current step, update tags on any computational results,
+and issue an interrupt if the system would take a step with a bad combination of tags---say,
+printing Bob's personal information to a public channel.
 
-The What: Source semantics, reference interpreter, and proofs for a C variant with tag-based security enforcement. Implemented in Coq and extracted to Ocaml.
+Tagged C is a C variant with a reference monitor built in, enabling the user to provide
+a policy definition and have it enforced during execution.
+
+The current technical contributions of the project consist of the formal semantics (based on
+that of CompCert) and a reference interpreter, implemented in coq and extracted to ocaml.
+The interpreter is proven to replicate the behavior of the semantics.
+
+<p>
+<a href="rv23.pdf">"Flexible Runtime Security Enforcement with Tagged C"</a> (joint with Allison Naaktgeboren and Andrew Tolmach),
+<i>RV 23</i>, October 2023.
+</p>
+<p>
+<a href="https://dl.acm.org/doi/pdf/10.1145/3437992.3439929">"Towards Formally Verified Compilation of Tag-Based Policy Enforcement"</a> (joint with CHR Chhak and Sean Anderson), <i>CPP 2021</i>, January 2021.
+</p>
 </div>
 
 <h4>Formally Definition Stack Safety</h4>
@@ -95,8 +115,6 @@ The What:
 
 <a name="pubs"><h3> Publications</h3></a>
 
-<a href="rv23.pdf">"Flexible Runtime Security Enforcement with Tagged C"</a> (joint with Allison Naaktgeboren and Andrew Tolmach),
-<i>RV 23</i>, October 2023.
 <p>
 <a href="csf23.pdf">"Formalizing Stack Safety as a Security Property"</a> (joint with
 <a href="http://robblanco.github.io/">Roberto Blanco</a>,
@@ -104,8 +122,6 @@ The What:
 <a href="http://www.cis.upenn.edu/~bcpierce/">Benjamin C. Pierce</a>, and
 <a href="">Andrew Tolmach</a>),
 <i>CSF 2023</i>, July 2023.
-<p>
-<a href="https://dl.acm.org/doi/pdf/10.1145/3437992.3439929">"Towards Formally Verified Compilation of Tag-Based Policy Enforcement"</a> (joint with CHR Chhak and Sean Anderson), <i>CPP 2021</i>, January 2021.
 <p>
 
 <hr>

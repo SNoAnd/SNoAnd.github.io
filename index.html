@@ -107,6 +107,19 @@ In this line of theoretical work, I've attempted to tease out the essence of wha
 <button type="button" class="collapsible">Read more about stack safety</button>
 <div class="content">
 
+There are so many different mechanisms out there that purport to protect the call stack
+from attack, from extremely light-weight ones like stack canaries to sophisticated memory
+protection. My group originally set out to test one (the tag-based PIPE policies of
+<a href="https://ic.ese.upenn.edu/pdf/stack_ieeesp2018.pdf">Roessler and DeHon</a>,
+but quickly found that it was not at all obvious what we should be testing!
+It turns out that stack safety is quite finicky to describe formally.
+
+I was particularly interested in the question of "lazy" enforcement, a style of policy
+described by Roessler and DeHon that allows unsafe writes, but prevents them from being
+read, for performance reasons. Focusing on this rather strange edge-case helped guide
+us toward the observation that stack safety is about the flow of information between
+caller and callee.
+
 <p>
 <a href="csf23.pdf">"Formalizing Stack Safety as a Security Property"</a> (joint with
 <a href="http://robblanco.github.io/">Roberto Blanco</a>,
